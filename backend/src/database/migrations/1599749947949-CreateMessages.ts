@@ -46,7 +46,7 @@ export default class CreateMessages1599749947949 implements MigrationInterface {
     await queryRunner.createForeignKey(
       'messages',
       new TableForeignKey({
-        name: 'UserIdMessage',
+        name: 'UserId',
         columnNames: ['user_id'],
         referencedColumnNames: ['id'],
         referencedTableName: 'users',
@@ -57,7 +57,7 @@ export default class CreateMessages1599749947949 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<any> {
-    await queryRunner.dropForeignKey('messages', 'UserIdMessage');
+    await queryRunner.dropForeignKey('messages', 'UserId');
 
     await queryRunner.dropTable('messages');
   }
