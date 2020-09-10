@@ -1,0 +1,9 @@
+{
+  "type": "sqlite",
+  "database": "data/nest-graphql.db",
+  "entities": ["./src/database/models/*.ts"],
+  "migrations": ["./src/database/migrations/*.ts"],
+  "cli": {
+    "migrationsDir": "./src/database/migrations"
+  }
+}
