@@ -1,10 +1,15 @@
-import { MigrationInterface, QueryRunner, Table } from 'typeorm';
+import {
+  MigrationInterface,
+  QueryRunner,
+  Table,
+  TableForeignKey,
+} from 'typeorm';
 
-export default class CreateUsers1599747162555 implements MigrationInterface {
+export default class CreateMessages1599749947949 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'users',
+        name: 'messages',
         columns: [
           {
             name: 'id',
@@ -14,10 +19,14 @@ export default class CreateUsers1599747162555 implements MigrationInterface {
             generationStrategy: 'increment',
           },
           {
-            name: 'email',
+            name: 'user_id',
+            type: 'integer',
+            isNullable: false,
+          },
+          {
+            name: 'content',
             type: 'varchar',
             length: '255',
-            isUnique: true,
             isNullable: false,
           },
           {
@@ -33,9 +42,23 @@ export default class CreateUsers1599747162555 implements MigrationInterface {
         ],
       }),
     );
+
+    await queryRunner.createForeignKey(
+      'message',
+      new TableForeignKey({
+        name: 'UserIdMessage',
+        columnNames: ['user_id'],
+        referencedColumnNames: ['id'],
+        referencedTableName: 'users',
+        onDelete: 'SET NULL',
+        onUpdate: 'CASCADE',
+      }),
+    );
   }
 
   public async down(queryRunner: QueryRunner): Promise<any> {
-    await queryRunner.dropTable('users');
+    await queryRunner.dropForeignKey('messages', 'UserIdMessage');
+
+    await queryRunner.dropTable('messages');
   }
 }
