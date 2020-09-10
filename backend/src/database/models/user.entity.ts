@@ -11,8 +11,8 @@ import {
 
 import Message from './message.entity';
 
-ObjectType();
-@Entity('users')
+@ObjectType()
+@Entity({ name: 'users' })
 export default class User {
   @Field()
   @PrimaryGeneratedColumn()
@@ -20,7 +20,7 @@ export default class User {
 
   @Field()
   @Column()
-  name: string;
+  email: string;
 
   @Field()
   @CreateDateColumn({ name: 'created_at' })
@@ -28,7 +28,7 @@ export default class User {
 
   @Field()
   @UpdateDateColumn({ name: 'updated_at' })
-  updateAt: Date;
+  updatedAt: Date;
 
   @OneToMany(() => Message, (message) => message.userConnection)
   messageConnection: Promise<Message[]>;

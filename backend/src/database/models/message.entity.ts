@@ -13,7 +13,7 @@ import {
 import User from './user.entity';
 
 @ObjectType()
-@Entity('messages')
+@Entity({ name: 'messages' })
 export default class Message {
   @Field()
   @PrimaryGeneratedColumn()
@@ -21,7 +21,7 @@ export default class Message {
 
   @Field()
   @Column({ name: 'user_id' })
-  userId: string;
+  userId: number;
 
   @Field()
   @Column()
