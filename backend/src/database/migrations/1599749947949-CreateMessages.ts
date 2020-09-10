@@ -44,7 +44,7 @@ export default class CreateMessages1599749947949 implements MigrationInterface {
     );
 
     await queryRunner.createForeignKey(
-      'message',
+      'messages',
       new TableForeignKey({
         name: 'UserIdMessage',
         columnNames: ['user_id'],
