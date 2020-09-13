@@ -18,3 +18,5 @@
 ## Regras de negócio
 
 - [] O usuário não pode deletar mensagens de outro usuário
+
+## Desafios
